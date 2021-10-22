@@ -10,6 +10,8 @@ const App = () => {
   const [type, setType] = useState('GET');
   const [response, setResponse] = useState();
   const [value, setValue] = React.useState('1');
+  const [headers, setHeaders] = React.useState([]);
+  const [body, setBody] = React.useState([]);
 
   return (
     <div className="App">
@@ -20,11 +22,17 @@ const App = () => {
         setType={setType}
         setResponse={setResponse}
         setValue={setValue}
+        headers={headers}
+        body={body}
       />
       <Tabs
         response={response}
         value={value}
         setValue={setValue}
+        headers={headers}
+        setHeaders={setHeaders}
+        body={body}
+        setBody={setBody}
       />
     </div>
   );

@@ -8,12 +8,29 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import requestTypes from "../constants/requestTypes"
 
-const sendResponse = (type, url) => {
+const sendResponse = (type, url, headers, body) => {
+  const mappedHeaders = {
+    "Cache-Control": "no-cache",
+  }
+
+  headers.forEach(header => {
+    if (header[0]) {
+      mappedHeaders[header[0]] = header[1]
+    }
+  });
+
+  const mappedBody = {}
+
+  body.forEach(b => {
+    if (b[0]) {
+      mappedBody[b[0]] = b[1]
+    }
+  });
+
   return fetch(url, {
     type: type,
-    headers: {
-      "Cache-Control": "no-cache",
-    }
+    headers: mappedHeaders,
+    body: JSON.stringify(mappedBody)
   }).then(response => {
     if (response.status === 200) {
       return response.text();
@@ -24,13 +41,15 @@ const sendResponse = (type, url) => {
 }
 
 const requestMenuItems = () => {
-  return requestTypes.map(requestType => <MenuItem value={requestType}>{requestType}</MenuItem>);
+  return requestTypes.map((requestType, i) => {
+    return <MenuItem key={`top-bar-menu-item-${i}`} value={requestType}>{requestType}</MenuItem>;
+  });
 }
 
-const TopBar = ({ type, setType, url, setUrl, setResponse, setValue }) => {
+const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, body }) => {
   return (
     <header className="App-header">
-      <FormControl variant="standard" sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: "10px", flexGrow: 1}}>
+      <FormControl id="top-bar-form-control" variant="standard" sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: "10px", flexGrow: 1}}>
         <InputLabel id="demo-simple-select-filled-label">Method</InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
@@ -43,7 +62,6 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue }) => {
           {requestMenuItems()}
         </Select>
         <TextField
-          id="standard-basic"
           label="URL"
           variant="standard"
           value={url}
@@ -52,7 +70,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue }) => {
         />
         <Button
           variant="contained"
-          onClick={async () => await sendResponse(type, url).then(response => { setResponse(response); setValue("3"); })}
+          onClick={async () => await sendResponse(type, url, headers, body).then(response => { setResponse(response); setValue("3"); })}
         >
           Send
         </Button>

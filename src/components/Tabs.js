@@ -8,7 +8,7 @@ import Headers from "./Headers";
 import Body from "./Body";
 import Response from "./Response"
 
-const Tabs = ({value, setValue, response}) => {
+const Tabs = ({value, setValue, response, headers, setHeaders, body, setBody}) => {
 
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -21,10 +21,10 @@ const Tabs = ({value, setValue, response}) => {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <Headers />
+          <Headers headers={headers} setHeaders={setHeaders} />
         </TabPanel>
         <TabPanel value="2">
-          <Body />
+          <Body body={body} setBody={setBody} />
         </TabPanel>
         <TabPanel value="3">
           <Response response={response} />

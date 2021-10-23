@@ -21,10 +21,10 @@ const headerRows = (headers, setHeaders) => {
           disablePortal
           variant="standard"
           freeSolo
-          value={header[0]}
+          value={header.header}
           options={headersConst}
           onChange={(evt, newValue) => {
-            headers[i] = [(newValue && newValue.label) || "", headers[i][1]]
+            headers[i].header = (newValue && newValue.label) || ""
             setHeaders([...headers])
           }}
           sx={{ width: "50%" }}
@@ -34,7 +34,7 @@ const headerRows = (headers, setHeaders) => {
               label="Header"
               variant="standard"
               onChange={evt => {
-                headers[i] = [evt.target.value || "", headers[i][1]]
+                headers[i].header = evt.target.value || ""
                 setHeaders([...headers])
               }}
             />
@@ -43,10 +43,10 @@ const headerRows = (headers, setHeaders) => {
         <TextField
           label="Value"
           variant="standard"
-          value={header[1]}
+          value={header.value}
           sx={{ width: "50%" }}
           onChange={evt => {
-            headers[i] = [headers[i][0], evt.target.value]
+            headers[i].value = evt.target.value || ""
             setHeaders([...headers])
           }}
         />
@@ -77,7 +77,7 @@ const Headers = ({ headers, setHeaders }) => {
   return (
     <div id="headers" className="headers">
       {headerRows(headers, setHeaders)}
-      <Button sx={{ marginTop: 1 }} onClick={() => { setHeaders([...headers, ["", ""]]); scrollBottom("headers")}}>Add Header</Button>
+      <Button sx={{ marginTop: 1 }} onClick={() => { setHeaders([...headers, { header: "", value: "" }]); scrollBottom("headers")}}>Add Header</Button>
     </div>
   );
 }

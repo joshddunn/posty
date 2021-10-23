@@ -5,17 +5,17 @@ export const sendResponse = (type, url, headers, body) => {
     "Cache-Control": "no-cache",
   }
 
-  headers.forEach(header => {
-    if (header[0]) {
-      mappedHeaders[header[0]] = header[1]
+  headers.forEach(h => {
+    if (h.header) {
+      mappedHeaders[h.field] = h.value
     }
   });
 
   const mappedBody = {}
 
   body.forEach(b => {
-    if (b[0]) {
-      mappedBody[b[0]] = b[1]
+    if (b.field) {
+      mappedBody[b.field] = b.file || b.value
     }
   });
 

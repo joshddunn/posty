@@ -4,6 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 import { scrollBottom, usePrevious } from '../lib/helpers';
 
@@ -19,24 +20,41 @@ const bodyRows = (body, setBody) => {
           id="standard-basic"
           label="Field"
           variant="standard"
-          value={b[0]}
+          value={b.field}
           sx={{ width: "50%" }}
           onChange={evt => {
-            body[i] = [evt.target.value || "", body[i][1]]
+            body[i].field = evt.target.value || ""
             setBody([...body])
           }}
         />
         <TextField
-          id="standard-basic"
+          id={`body-value-${i}`}
           label="Value"
           variant="standard"
-          value={b[1]}
+          value={b.value}
           sx={{ width: "50%" }}
           onChange={evt => {
-            body[i] = [body[i][0], evt.target.value]
+            body[i].value = evt.target.value || ""
             setBody([...body])
           }}
+          disabled={!!b.file}
         />
+        <IconButton
+          component="label"
+          sx={{ borderRadius: 1 }}
+          color={b.file ? "success" : "default"}
+        >
+          <CloudUploadIcon/>
+          <input
+            type="file"
+            onChange={(evt) => {
+              body[i].file = evt.target.files[0]
+              body[i].value = body[i].file.name
+              setBody([...body])
+            }}
+            hidden
+          />
+        </IconButton>
         <IconButton
           onClick={() => setBody(body.filter((item, index) => index !== i ))}
           sx={{ borderRadius: 1 }}
@@ -63,7 +81,7 @@ const Body = ({ body, setBody }) => {
   return (
     <div id="body" className="body">
       {bodyRows(body, setBody)}
-      <Button sx={{ marginTop: 1 }} onClick={() => { setBody([...body, ["", ""]]); scrollBottom("body")}}>Add Field</Button>
+      <Button sx={{ marginTop: 1 }} onClick={() => { setBody([...body, { field: "", value: "", file: null}]); scrollBottom("body")}}>Add Field</Button>
     </div>
   );
 }

@@ -53,7 +53,7 @@ const headerRows = (headers, setHeaders) => {
         <IconButton
           onClick={() => setHeaders(headers.filter((item, index) => index !== i))}
           sx={{ borderRadius: 1 }}
-          color="error"
+          variant="contained"
         >
           <ClearIcon size="medium" />
         </IconButton>

@@ -40,7 +40,6 @@ const bodyRows = (body, setBody) => {
         <IconButton
           onClick={() => setBody(body.filter((item, index) => index !== i ))}
           sx={{ borderRadius: 1 }}
-          color="error"
         >
           <ClearIcon />
         </IconButton>

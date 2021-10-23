@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
+
+import { scrollBottom, usePrevious } from '../lib/helpers';
 
 const bodyRows = (body, setBody) => {
   return body.map((b, i) => {
@@ -44,19 +46,6 @@ const bodyRows = (body, setBody) => {
     );
   });
 }
-
-const scrollBottom = id => {
-  let e = document.getElementById(id);
-  e.scrollTop = e.scrollHeight - e.clientHeight;
-}
-
-const usePrevious = (value) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
 
 const Body = ({ body, setBody }) => {
 

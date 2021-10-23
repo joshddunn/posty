@@ -6,7 +6,7 @@ import TopBar from './components/TopBar';
 import Tabs from './components/Tabs';
 
 const App = () => {
-  const [url, setUrl] = useState("https://google.com");
+  const [url, setUrl] = useState("");
   const [type, setType] = useState('GET');
   const [response, setResponse] = useState();
   const [value, setValue] = React.useState('1');

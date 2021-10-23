@@ -28,7 +28,7 @@
   }
 }
 
-.body, .headers {
+.body, .headers, plaintext {
   padding: 5px;
   max-height: 55vh;
   min-height: 55vh;

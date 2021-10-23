@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import headersConst from "../constants/headers";
+import { scrollBottom, usePrevious } from '../lib/helpers';
 
 const headerRows = (headers, setHeaders) => {
   return headers.map((header, i) => {
@@ -58,19 +59,6 @@ const headerRows = (headers, setHeaders) => {
     );
   });
 }
-
-const scrollBottom = id => {
-  let e = document.getElementById(id);
-  e.scrollTop = 1000000;
-}
-
-const usePrevious = (value) => {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
 
 const Headers = ({ headers, setHeaders }) => {
 

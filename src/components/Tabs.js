@@ -20,13 +20,13 @@ const Tabs = ({value, setValue, response, headers, setHeaders, body, setBody}) =
             <Tab label="Response" value="3" sx={{ id: "response-tab" }} />
           </TabList>
         </Box>
-        <TabPanel value="1">
+        <TabPanel value="1" sx={{ padding: 1, paddingTop: 0 }}>
           <Headers headers={headers} setHeaders={setHeaders} />
         </TabPanel>
-        <TabPanel value="2">
+        <TabPanel value="2" sx={{ padding: 1, paddingTop: 0}}>
           <Body body={body} setBody={setBody} />
         </TabPanel>
-        <TabPanel value="3">
+        <TabPanel value="3" sx={{ padding: 1, paddingTop: 0 }}>
           <Response response={response} />
         </TabPanel>
       </TabContext>

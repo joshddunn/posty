@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import headersConst from "../constants/headers";
@@ -26,7 +27,7 @@ const headerRows = (headers, setHeaders) => {
             headers[i] = [(newValue && newValue.label) || "", headers[i][1]]
             setHeaders([...headers])
           }}
-          sx={{ width: 300 }}
+          sx={{ width: "50%" }}
           renderInput={(params) => {
             return <TextField
               {...params}
@@ -43,18 +44,18 @@ const headerRows = (headers, setHeaders) => {
           label="Value"
           variant="standard"
           value={header[1]}
+          sx={{ width: "50%" }}
           onChange={evt => {
             headers[i] = [headers[i][0], evt.target.value]
             setHeaders([...headers])
           }}
-          sx={{ width: 300 }}
         />
-        <Button
+        <IconButton
           onClick={() => setHeaders(headers.filter((item, index) => index !== i))}
           color="error"
         >
-          <ClearIcon />
-        </Button>
+          <ClearIcon size="medium" />
+        </IconButton>
       </FormControl>
     );
   });
@@ -75,7 +76,7 @@ const Headers = ({ headers, setHeaders }) => {
   return (
     <div id="headers" className="headers">
       {headerRows(headers, setHeaders)}
-      <Button sx={{ marginTop: 2 }} onClick={() => { setHeaders([...headers, ["", ""]]); scrollBottom("headers")}}>Add Header</Button>
+      <Button sx={{ marginTop: 1 }} onClick={() => { setHeaders([...headers, ["", ""]]); scrollBottom("headers")}}>Add Header</Button>
     </div>
   );
 }

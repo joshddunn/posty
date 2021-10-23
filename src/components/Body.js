@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
 import { scrollBottom, usePrevious } from '../lib/helpers';
@@ -19,6 +20,7 @@ const bodyRows = (body, setBody) => {
           label="Field"
           variant="standard"
           value={b[0]}
+          sx={{ width: "50%" }}
           onChange={evt => {
             body[i] = [evt.target.value || "", body[i][1]]
             setBody([...body])
@@ -30,18 +32,19 @@ const bodyRows = (body, setBody) => {
           label="Value"
           variant="standard"
           value={b[1]}
+          sx={{ width: "50%" }}
           onChange={evt => {
             body[i] = [body[i][0], evt.target.value]
             setBody([...body])
           }}
           sx={{ width: 350 }}
         />
-        <Button
+        <IconButton
           onClick={() => setBody(body.filter((item, index) => index !== i ))}
           color="error"
         >
           <ClearIcon />
-        </Button>
+        </IconButton>
       </FormControl>
     );
   });
@@ -62,7 +65,7 @@ const Body = ({ body, setBody }) => {
   return (
     <div id="body" className="body">
       {bodyRows(body, setBody)}
-      <Button sx={{ marginTop: 2 }} onClick={() => { setBody([...body, ["", ""]]); scrollBottom("body")}}>Add Field</Button>
+      <Button sx={{ marginTop: 1 }} onClick={() => { setBody([...body, ["", ""]]); scrollBottom("body")}}>Add Field</Button>
     </div>
   );
 }

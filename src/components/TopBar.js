@@ -22,7 +22,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
       <FormControl
         id="top-bar-form-control"
         variant="standard"
-        sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: "10px", flexGrow: 1}}
+        sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: 1, flexGrow: 1}}
       >
         <InputLabel id="demo-simple-select-filled-label">Method</InputLabel>
         <Select

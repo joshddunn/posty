@@ -1,12 +1,12 @@
 const requestTypes = [
   "GET",
-  "HEAD",
+  // "HEAD",
   "POST",
   "PUT",
   "DELETE",
-  "CONNECT",
-  "OPTIONS",
-  "TRACE",
+  // "CONNECT",
+  // "OPTIONS",
+  // "TRACE",
   "PATCH"
 ];
 

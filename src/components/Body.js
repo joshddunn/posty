@@ -13,7 +13,7 @@ const bodyRows = (body, setBody) => {
       <FormControl
         key={`header-form-control-header-${i}`}
         variant="standard"
-        sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: "10px", flexGrow: 1}}
+        sx={{ m: 1, margin: 1, width: "calc(100% - 16px)", flexDirection: "row", columnGap: 1, flexGrow: 1, justifyContent: "space-between"}}
       >
         <TextField
           id="standard-basic"
@@ -25,7 +25,6 @@ const bodyRows = (body, setBody) => {
             body[i] = [evt.target.value || "", body[i][1]]
             setBody([...body])
           }}
-          sx={{ width: 350 }}
         />
         <TextField
           id="standard-basic"
@@ -37,10 +36,10 @@ const bodyRows = (body, setBody) => {
             body[i] = [body[i][0], evt.target.value]
             setBody([...body])
           }}
-          sx={{ width: 350 }}
         />
         <IconButton
           onClick={() => setBody(body.filter((item, index) => index !== i ))}
+          sx={{ borderRadius: 1 }}
           color="error"
         >
           <ClearIcon />

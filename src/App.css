@@ -16,7 +16,6 @@
 
 .App-header {
   font-size: 12px;
-  margin: 10px 0px;
 }
 
 @keyframes App-logo-spin {
@@ -29,11 +28,9 @@
 }
 
 .body, .headers, plaintext {
-  padding: 5px;
   max-height: 65vh;
   min-height: 65vh;
   overflow: scroll;
-  margin: auto;
 }
 
 plaintext {
@@ -48,7 +45,7 @@ body {
   overflow: hidden;
   background: rgb(30, 31, 34);
   color: white;
-  padding: 0px 10px;
+  padding: 10px;
 }
 
 *::-webkit-scrollbar {

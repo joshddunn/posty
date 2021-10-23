@@ -15,7 +15,7 @@ const headerRows = (headers, setHeaders) => {
       <FormControl
         key={`header-form-control-header-${i}`}
         variant="standard"
-        sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: "10px", flexGrow: 1}}
+        sx={{ m: 1, margin: 1, width: "calc(100% - 16px)", flexDirection: "row", columnGap: 1, flexGrow: 1, justifyContent: "space-between" }}
       >
         <Autocomplete
           disablePortal
@@ -52,6 +52,7 @@ const headerRows = (headers, setHeaders) => {
         />
         <IconButton
           onClick={() => setHeaders(headers.filter((item, index) => index !== i))}
+          sx={{ borderRadius: 1 }}
           color="error"
         >
           <ClearIcon size="medium" />

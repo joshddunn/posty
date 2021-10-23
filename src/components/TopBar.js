@@ -22,7 +22,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
       <FormControl
         id="top-bar-form-control"
         variant="standard"
-        sx={{ m: 1, marginLeft: 0, marginRight: 0, width: "100%", minWidth: 120, flexDirection: "row", columnGap: 1, flexGrow: 1}}
+        sx={{ m: 1, margin: 1, width: "calc(100% - 16px)", minWidth: 120, flexDirection: "row", columnGap: 1, flexGrow: 1, justifyContent: "space-between"}}
       >
         <InputLabel id="demo-simple-select-filled-label">Method</InputLabel>
         <Select
@@ -31,7 +31,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
           value={type}
           onChange={(evt) => setType(evt.target.value)}
           label="Method"
-          sx={{ width: 110 }}
+          sx={{ width: "20%" }}
         >
           {requestMenuItems()}
         </Select>
@@ -40,10 +40,11 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
           variant="standard"
           value={url}
           onChange={(evt) => setUrl(evt.target.value)}
-          sx={{ width: 420 }}
+          sx={{ width: "70%" }}
         />
         <Button
           variant="contained"
+          sx={{ width: "10%" }}
           onClick={async () => await sendResponse(type, url, headers, body).then(response => { setResponse(response); setValue("3"); })}
         >
           Send

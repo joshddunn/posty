@@ -13,7 +13,7 @@ const Tabs = ({value, setValue, response, headers, setHeaders, body, setBody}) =
   return (
     <Box sx={{ width: '100%', typography: 'body1' }}>
       <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{ margin: 1, width: "calc(100% - 16px)", borderBottom: 1, borderColor: 'divider' }}>
           <TabList value={value} onChange={(evt, newValue) => setValue(newValue)} aria-label="tabs">
             <Tab label="Headers" value="1" />
             <Tab label="Body" value="2" />

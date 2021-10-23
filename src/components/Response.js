@@ -6,7 +6,7 @@ const Response = ({ response }) => {
     placeholder="Empty"
     maxRows={15}
     value={response}
-    style={{ width: "95%", resize: "none" }}
+    style={{ width: "95%", resize: "none", marginTop: 24 }}
     sx= {{ withspellcheck: false }}
   />
 }

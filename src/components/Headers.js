@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
+import Delete from '@mui/icons-material/Delete';
 
 import headersConst from "../constants/headers";
 import { scrollBottom, usePrevious } from '../lib/helpers';
@@ -55,7 +55,7 @@ const headerRows = (headers, setHeaders) => {
           sx={{ borderRadius: 1 }}
           variant="contained"
         >
-          <ClearIcon size="medium" />
+          <Delete />
         </IconButton>
       </FormControl>
     );

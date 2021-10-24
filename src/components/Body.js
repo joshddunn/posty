@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import ClearIcon from '@mui/icons-material/Clear';
+import Delete from '@mui/icons-material/Delete';
 import AttachFile from '@mui/icons-material/AttachFile';
 
 import { scrollBottom, usePrevious } from '../lib/helpers';
@@ -59,7 +59,7 @@ const bodyRows = (body, setBody) => {
           onClick={() => setBody(body.filter((item, index) => index !== i ))}
           sx={{ borderRadius: 1 }}
         >
-          <ClearIcon />
+          <Delete />
         </IconButton>
       </FormControl>
     );

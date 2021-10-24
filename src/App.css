@@ -27,14 +27,10 @@
   }
 }
 
-.body, .headers, plaintext {
+.body, .headers, .response {
   max-height: 65vh;
   min-height: 65vh;
   overflow: scroll;
-}
-
-plaintext {
-  text-align: left;
 }
 
 html {

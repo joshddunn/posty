@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import requestTypes from '../constants/requestTypes';
 
-import { sendResponse } from '../lib/helpers';
+import { sendResponse} from '../lib/helpers';
 
 const requestMenuItems = () => {
   return requestTypes.map((requestType, i) => {
@@ -16,9 +16,10 @@ const requestMenuItems = () => {
   });
 }
 
-const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, body }) => {
+const TopBar = ({ type, setType, setResponse, setValue, headers, body }) => {
 
   const [loading, setLoading] = useState(false);
+  const [url, setUrl] = useState("");
 
   return (
     <header className="App-header">
@@ -52,7 +53,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
           onClick={async () => {
             setLoading(true)
             const cleanup = (resp) => {
-              setResponse(resp)
+              setResponse({...resp})
               setValue("3")
               setLoading(false)
             }

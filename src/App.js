@@ -6,9 +6,8 @@ import TopBar from './components/TopBar';
 import Tabs from './components/Tabs';
 
 const App = () => {
-  const [url, setUrl] = useState("");
   const [type, setType] = useState('GET');
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState({ status: null, data: "", headers: []});
   const [value, setValue] = React.useState('1');
   const [headers, setHeaders] = React.useState([]);
   const [body, setBody] = React.useState([]);
@@ -16,8 +15,6 @@ const App = () => {
   return (
     <div className="App">
       <TopBar
-        url={url}
-        setUrl={setUrl}
         type={type}
         setType={setType}
         setResponse={setResponse}

@@ -44,8 +44,11 @@ export const sendResponse = (type, url, headers, body, cleanup) => {
         status: response.status,
         type: null,
         dataPromise: null,
-        data: ""
+        data: "",
+        headers: []
       }
+
+      response.headers.forEach((val, key) => { resp.headers.push([key, val]) })
 
       const contentDisposition = response.headers.get('content-disposition')
       if (contentDisposition && contentDisposition.includes("attachment;")) {

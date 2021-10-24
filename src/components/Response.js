@@ -7,7 +7,7 @@ const Response = ({ response }) => {
       variant="contained"
       onClick={() => {
         const link = document.createElement("a");
-        const url = window.URL.createObjectURL(response.parsedResponse);
+        const url = window.URL.createObjectURL(response.data);
         link.href = url
         link.download = response.filename;
         link.click();
@@ -24,7 +24,7 @@ const Response = ({ response }) => {
     spellCheck="false"
     readOnly={true}
     maxRows={15}
-    value={response.parsedResponse}
+    value={response.data}
     style={{ width: "95%", resize: "none", marginTop: 24 }}
   />
 }

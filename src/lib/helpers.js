@@ -10,7 +10,7 @@ export const prettifyResponse = (response) => {
   }
 }
 
-export const sendResponse = (type, url, headers, body) => {
+export const sendResponse = (type, url, headers, body, cleanup) => {
   const mappedHeaders = {
     "Cache-Control": "no-cache",
   }
@@ -38,19 +38,36 @@ export const sendResponse = (type, url, headers, body) => {
     params["body"] = JSON.stringify(mappedBody)
   }
 
-  return fetch(url, params).then(response => {
-    if (response.status === 200) {
+  return fetch(url, params)
+    .then(response => {
+      const resp = {
+        status: response.status,
+        type: null,
+        dataPromise: null,
+        data: ""
+      }
+
       const contentDisposition = response.headers.get('content-disposition')
       if (contentDisposition && contentDisposition.includes("attachment;")) {
+        resp.type = "Blob"
+        resp.dataPromise = response.blob()
+
         const match = contentDisposition.match(/filename=(.+)$/)
-        return { type: "Blob", response: response.blob(), filename: match[match.length - 1] }
+        resp.filename = match[match.length - 1]
       } else {
-        return { type: "Text", response: response.text() }
+        resp.type = "Text"
+        resp.dataPromise = response.text()
       }
-    } else {
-      console.log("something broke")
-    }
-  })
+
+      if (resp.dataPromise) {
+        resp.dataPromise.then(data => {
+          resp.data = resp.type === "Blob" ? data : prettifyResponse(data)
+          cleanup(resp)
+        })
+      } else {
+        cleanup(resp)
+      }
+    })
 }
 
 export const scrollBottom = id => {

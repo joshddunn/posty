@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import requestTypes from '../constants/requestTypes';
 
-import { sendResponse, prettifyResponse } from '../lib/helpers';
+import { sendResponse } from '../lib/helpers';
 
 const requestMenuItems = () => {
   return requestTypes.map((requestType, i) => {
@@ -51,19 +51,12 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
           sx={{ width: "10%" }}
           onClick={async () => {
             setLoading(true)
-            await sendResponse(type, url, headers, body)
-              .then(response => {
-                response.response.then(parsedResponse => {
-                  if (response.type === "Blob") {
-                    response.parsedResponse = parsedResponse
-                  } else {
-                    response.parsedResponse = prettifyResponse(parsedResponse)
-                  }
-                  setResponse(response)
-                  setValue("3")
-                  setLoading(false)
-                })
-              })
+            const cleanup = (resp) => {
+              setResponse(resp)
+              setValue("3")
+              setLoading(false)
+            }
+            await sendResponse(type, url, headers, body, cleanup)
           }}
         >
           Send

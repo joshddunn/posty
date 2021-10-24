@@ -1,6 +1,6 @@
-# Posty
+# Posty (beta)
 
-Posty is a minimalistic http request application.
+Posty is a minimalistic http request application. This is in beta so there may be some bugs. Let me know if you find any!
 
 ## Development
 

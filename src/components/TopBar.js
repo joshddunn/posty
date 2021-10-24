@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import requestTypes from '../constants/requestTypes';
 
-import { sendResponse } from '../lib/helpers';
+import { sendResponse, prettifyResponse } from '../lib/helpers';
 
 const requestMenuItems = () => {
   return requestTypes.map((requestType, i) => {
@@ -45,7 +45,7 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
         <Button
           variant="contained"
           sx={{ width: "10%" }}
-          onClick={async () => await sendResponse(type, url, headers, body).then(response => { setResponse(response); setValue("3"); })}
+          onClick={async () => await sendResponse(type, url, headers, body).then(response => { setResponse(prettifyResponse(response)); setValue("3"); })}
         >
           Send
         </Button>

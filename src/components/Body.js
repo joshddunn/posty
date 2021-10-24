@@ -4,7 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import AttachFile from '@mui/icons-material/AttachFile';
 
 import { scrollBottom, usePrevious } from '../lib/helpers';
 
@@ -29,7 +29,7 @@ const bodyRows = (body, setBody) => {
         />
         <TextField
           id={`body-value-${i}`}
-          label="Value"
+          label={!!b.file ? "File" : "Value"}
           variant="standard"
           value={b.value}
           sx={{ width: "50%" }}
@@ -44,7 +44,7 @@ const bodyRows = (body, setBody) => {
           sx={{ borderRadius: 1 }}
           color={b.file ? "success" : "default"}
         >
-          <CloudUploadIcon/>
+          <AttachFile />
           <input
             type="file"
             onChange={(evt) => {

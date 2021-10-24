@@ -1,4 +1,14 @@
 import { useEffect, useRef } from 'react';
+import pretty from 'pretty';
+
+export const prettifyResponse = (response) => {
+  try {
+    const json = JSON.parse(response)
+    return JSON.stringify(json, null, '  ')
+  } catch {
+    return pretty(response)
+  }
+}
 
 export const sendResponse = (type, url, headers, body) => {
   const mappedHeaders = {

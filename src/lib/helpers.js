@@ -40,6 +40,7 @@ export const sendResponse = (type, url, headers, body) => {
 
   return fetch(url, params).then(response => {
     if (response.status === 200) {
+      console.log(response);
       return response.text();
     } else {
       throw new Error("Something Broke");

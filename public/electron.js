@@ -1,7 +1,7 @@
 const path = require('path');
 
 const { app, BrowserWindow } = require('electron');
-const isDev = require('electron-is-dev');
+const isDev = false; //require('electron-is-dev');
 
 function createWindow() {
   // Create the browser window.
@@ -26,7 +26,7 @@ function createWindow() {
       : `file://${path.join(__dirname, '../build/index.html')}`
   );
   // Open the DevTools.
-  if (isDev && false) {
+  if (isDev) {
     win.webContents.openDevTools({ mode: 'detach' });
   }
 }

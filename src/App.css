@@ -30,7 +30,7 @@
 .body, .headers, .response {
   max-height: 65vh;
   min-height: 65vh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 html {
@@ -42,6 +42,15 @@ body {
   background: rgb(30, 31, 34);
   color: white;
   padding: 10px;
+}
+
+textarea {
+  background: rgb(30, 31, 34);
+  color: white;
+  border: 0px;
+  border-radius: 3px;
+  padding: 8px;
+  outline: none;
 }
 
 *::-webkit-scrollbar {

@@ -52,7 +52,9 @@ const TopBar = ({ type, setType, setResponse, setValue, headers, body }) => {
           sx={{ width: "10%" }}
           onClick={async () => {
             setLoading(true)
+            const start = performance.now()
             const cleanup = (resp) => {
+              resp.duration = (performance.now() - start).toFixed(2)
               setResponse({...resp})
               setValue("3")
               setLoading(false)

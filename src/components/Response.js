@@ -8,6 +8,32 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
+import Chip from '@mui/material/Chip';
+
+const statusColor = (status) => {
+  if (status <= 199) {
+    return "info"
+  } else if (status <= 299) {
+    return "success"
+  } else if (status <= 399) {
+    return "secondary"
+  } else if (status <= 499) {
+    return "warning"
+  } else if (status <= 599) {
+    return "error"
+  } else {
+    return "primary"
+  }
+}
+
 const Response = ({ response, ...props }) => {
 
   return (
@@ -19,19 +45,35 @@ const Response = ({ response, ...props }) => {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Additional Information</Typography>
+          <Typography component="div">
+            Information &nbsp;
+            {response.status && <Chip color={statusColor(response.status)} label={`Status ${response.status}`} />} &nbsp;
+            {response.duration && <Chip color="info" label={`${response.duration} ms`} />}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Status: {response.status}<br />
-            <br />
-            {response.headers.map(header => {
-              return (
-                <>
-                  {header[0]}: {header[1]}<br />
-                </>
-              )
-            })}
+          <Typography component="div">
+            <TableContainer component={Paper} sx={{ overflowWrap: "break-word", whiteSpace: "wrap", wordBreak: "break-all" }}>
+              <Table sx={{ minWidth: "100%", maxWidth: "100%" }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="left" sx={{ width: "33%" }}>Header</TableCell>
+                    <TableCell align="left" sx={{ width: "67%" }}>Value</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {response.headers.map((row, index) => (
+                    <TableRow
+                      key={`row-${index}`}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell align="left" sx={{ width: "33%" }}>{row[0]}</TableCell>
+                      <TableCell align="left" sx={{ width: "67%" }}>{row[1]}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -48,7 +90,7 @@ const Response = ({ response, ...props }) => {
           }}
           sx={{ margin: 1 }}
         >
-          Save {response.filename}
+          Save File
         </Button> :
         <>
           <Accordion>
@@ -68,7 +110,7 @@ const Response = ({ response, ...props }) => {
                   placeholder="Empty"
                   spellCheck="false"
                   readOnly={true}
-                  maxRows={15}
+                  maxRows={14}
                   value={response.data}
                   style={{ width: "95%", resize: "none", marginTop: 4 }}
                 />

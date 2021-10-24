@@ -48,7 +48,7 @@ export const sendResponse = (type, url, headers, body) => {
         return { type: "Text", response: response.text() }
       }
     } else {
-      throw new Error("Something Broke");
+      console.log("something broke")
     }
   })
 }

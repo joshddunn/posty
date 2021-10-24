@@ -15,7 +15,7 @@ const Response = ({ response }) => {
       }}
       sx={{ margin: 1 }}
     >
-      Download
+      Save {response.filename}
     </Button> :
     <TextareaAutosize
     color="primary"

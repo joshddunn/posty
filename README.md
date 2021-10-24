@@ -22,4 +22,4 @@ Run `npm run dist` and then compress the output. Rename to `posty_mac_<version>.
 ![screen_shot_1635053134](https://user-images.githubusercontent.com/7513070/138582045-8311414b-25a5-4942-b2aa-303a8d453570.png)
 
 ### Response
-![screen_shot_1635053165](https://user-images.githubusercontent.com/7513070/138582046-bd5d4bca-143f-49e6-aeea-6e66926ccefb.png)
+![screen_shot_1635071769](https://user-images.githubusercontent.com/7513070/138590204-0316987d-b2be-4bf7-8364-b6b92e347c4f.png)

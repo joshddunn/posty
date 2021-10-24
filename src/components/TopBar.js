@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,6 +17,9 @@ const requestMenuItems = () => {
 }
 
 const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, body }) => {
+
+  const [loading, setLoading] = useState(false);
+
   return (
     <header className="App-header">
       <FormControl
@@ -42,13 +45,22 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
           onChange={(evt) => setUrl(evt.target.value)}
           sx={{ width: "70%" }}
         />
-        <Button
+        <LoadingButton
           variant="contained"
+          loading={loading}
           sx={{ width: "10%" }}
-          onClick={async () => await sendResponse(type, url, headers, body).then(response => { setResponse(prettifyResponse(response)); setValue("3"); })}
+          onClick={async () => {
+            setLoading(true)
+            await sendResponse(type, url, headers, body)
+              .then(response => {
+                setResponse(prettifyResponse(response))
+                setValue("3")
+                setLoading(false)
+              })
+          }}
         >
           Send
-        </Button>
+        </LoadingButton>
       </FormControl>
     </header>
   );

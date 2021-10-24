@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
-    "pack": "electron-builder --dir"
+    "pack": "electron-builder --dir",
+    "dist": "npm run build && npm run pack"
   },
   "eslintConfig": {
     "extends": [

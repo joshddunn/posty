@@ -40,8 +40,13 @@ export const sendResponse = (type, url, headers, body) => {
 
   return fetch(url, params).then(response => {
     if (response.status === 200) {
-      console.log(response);
-      return response.text();
+      const contentDisposition = response.headers.get('content-disposition')
+      if (contentDisposition && contentDisposition.includes("attachment;")) {
+        const match = contentDisposition.match(/filename=(.+)$/)
+        return { type: "Blob", response: response.blob(), filename: match[match.length - 1] }
+      } else {
+        return { type: "Text", response: response.text() }
+      }
     } else {
       throw new Error("Something Broke");
     }

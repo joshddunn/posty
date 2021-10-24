@@ -53,9 +53,16 @@ const TopBar = ({ type, setType, url, setUrl, setResponse, setValue, headers, bo
             setLoading(true)
             await sendResponse(type, url, headers, body)
               .then(response => {
-                setResponse(prettifyResponse(response))
-                setValue("3")
-                setLoading(false)
+                response.response.then(parsedResponse => {
+                  if (response.type === "Blob") {
+                    response.parsedResponse = parsedResponse
+                  } else {
+                    response.parsedResponse = prettifyResponse(parsedResponse)
+                  }
+                  setResponse(response)
+                  setValue("3")
+                  setLoading(false)
+                })
               })
           }}
         >

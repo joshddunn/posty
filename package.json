@@ -57,9 +57,9 @@
     "wait-on": "^6.0.0"
   },
   "build": {
-    "appId": "posty",
+    "appId": "posty.app",
     "compression": "normal",
-    "productName": "posty",
+    "productName": "Posty",
     "directories": {
       "buildResources": "build",
       "output": "dist"
@@ -67,6 +67,7 @@
     "mac": {
       "icon": "assets/icon.icns",
       "type": "distribution",
+      "category": "public.app-category.developer-tools",
       "target": [
         "pkg",
         "dmg",

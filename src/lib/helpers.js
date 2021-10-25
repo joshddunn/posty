@@ -21,11 +21,11 @@ export const sendResponse = (type, url, headers, body, cleanup) => {
     }
   });
 
-  const mappedBody = {}
+  const formData = new FormData()
 
   body.forEach(b => {
     if (b.field) {
-      mappedBody[b.field] = b.file || b.value
+      formData.append(b.field, b.file || b.value)
     }
   });
 
@@ -35,7 +35,7 @@ export const sendResponse = (type, url, headers, body, cleanup) => {
   }
 
   if (type !== "GET") {
-    params["body"] = JSON.stringify(mappedBody)
+    params["body"] = formData
   }
 
   return fetch(url, params)

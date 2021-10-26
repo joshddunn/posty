@@ -16,7 +16,10 @@ function createWindow() {
       nodeIntegration: true,
       webSecurity: false
     },
+    show: false
   });
+
+  win.on("ready-to-show", () => { win.show() })
 
   // and load the index.html of the app.
   // win.loadFile("index.html");

@@ -21,20 +21,20 @@ export const sendResponse = (type, url, headers, body, cleanup) => {
     }
   });
 
-  const formData = new FormData()
-
-  body.forEach(b => {
-    if (b.field) {
-      formData.append(b.field, b.file || b.value)
-    }
-  });
-
   const params = {
     type: type,
     headers: mappedHeaders,
   }
 
   if (type !== "GET") {
+    const formData = new FormData()
+
+    body.forEach(b => {
+      if (b.field) {
+        formData.append(b.field, b.file || b.value)
+      }
+    });
+
     params["body"] = formData
   }
 

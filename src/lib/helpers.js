@@ -22,7 +22,7 @@ export const sendResponse = (type, url, headers, body, cleanup) => {
   });
 
   const params = {
-    type: type,
+    method: type,
     headers: mappedHeaders,
   }
 
